@@ -5,7 +5,8 @@ Conceitos básicos para utilização do git/github.
 O git é um _versionador de arquivos_, ou seja, ele funciona conservando um
 histórico de modificações (ou versões) dos arquivos especificados. Além disso,
 acrescenta uma funcionalidade de criar ramificações no código, ou _branches_, o
-que facilita a divisão de trabalhos em uma equipe de programação.
+que facilita a divisão de trabalhos em uma equipe de programação e a garantia de
+funcionamento do código principal.
 
 O histórico do git funciona, inicialmente, de acordo com uma lista de _commits_,
 que guardam as modificações de determinada versão, e todas as informações sobre
@@ -13,7 +14,7 @@ ela. Um commit pode ser definido como um ponto na história do repositório.
 
 ## [**Instalação:**](#instalação)
 
-No ambiente Ubuntu, como o gerenciador de pacotes apt, basta rodar o comando:
+No ambiente Ubuntu, com o gerenciador de pacotes apt, basta rodar o comando:
 
 ```sh
 ~$ sudo apt install git -y
@@ -32,12 +33,12 @@ Assim os comandos git já estarão disponíveis para utilização.
   ```
 
   Para executar todos os outros comandos você deve estar dentro de um repositório
-  git. Portanto, certifique-se que está no repositório.
+  git. Portanto, certifique-se que está em um repositório.
 
 - **_`status`_**:
 
-  Mostra o status do repositório atual. Mostra os arquivos nos estados _untracked_
-  e _tracked_.
+  Mostra o status dos arquivos do repositório atual. Mostra os arquivos nos
+  estados _untracked_ e _tracked_.
 
   **Obs:**
 
@@ -61,7 +62,8 @@ Assim os comandos git já estarão disponíveis para utilização.
 
     Após rodarmos o comando `git commit` (veja mais à frente) para os arquivos
     rastreados no momento ele passará para o estado 'commitado'. Esse estado
-    indica que o arquivo já está salvo no histórico do repositório.
+    indica que o arquivo já está salvo no histórico do repositório e suas
+    modificações não serão perdidas.
 
   O significado de cada estado ficará mais claro adiante.
 
@@ -85,11 +87,9 @@ Assim os comandos git já estarão disponíveis para utilização.
   ~/repos/repositório$ git add README.md
   ```
 
-  Quando queremos adicionar todos os arquivos do diretório podemos rodar:
-
-  ```sh
-  ~/repos/repositório$ git add .
-  ```
+  **Obs:** quando queremos adicionar todos os arquivos do diretório atual podemos
+  rodar: `git add .`, se você está na raiz do repositório todas as alterações
+  serão adicionadas (semelhante ao comando `git add -A`/ `git add --all`)
 
 - **_`commit`_**:
 
@@ -124,7 +124,7 @@ Seguindo os passos:
 ~/repos/repo$ git init # inicia o repositório git
 ~/repos/repo$ touch README.md # cria o arquivo 'README.md'
 ~/repos/repo$ echo '# Comandos básico de git' >> README.md
-# adiciona o texto indicado ao final do arquivo
+# adiciona o texto indicado ao final do arquivo (pesquise sobre o comando echo)
 ~/repos/repo$ git status # verificando o estado dos arquivos
 ~/repos/repo$ git add README.md # muda o arquivo para staged
 ~/repos/repo$ git commit -m 'adicionando o arquivo README'
@@ -177,7 +177,7 @@ Para a manipulação das branches temos os seguintes comandos:
 
   Esse também é um comando com várias funções:
 
-  - trocar entre branches
+  - **trocar entre branches**
 
     Suponha que estamos na branch 'main' e queremos mudar para a branch 'backup':
 
@@ -188,7 +188,7 @@ Para a manipulação das branches temos os seguintes comandos:
     **Obs:** caso a branch não exista o comando se encarrega de criar a branch e
     trocar para ela imediatamente.
 
-  - verificar commits passados
+  - **verificar commits passados**
 
     Quando queremos rever uma versão anterior do nosso repositório podemos copiar
     o _hash_ do commit e dar o checkout nele. Primeiramente pegamos o id/hash do
@@ -226,6 +226,12 @@ Para a manipulação das branches temos os seguintes comandos:
   **Obs2:** existem casos em que existe conflito ao _mergear_ branches. Quando
   isso acontece, o git tenta concertar automaticamente, porém, algumas vezes
   devemos fazer essas correções manualmente.
+
+  **Obs3:** quando não indicamos o tipo de merge o git se encarrega de simplificar
+  esse merge, existem 2 tipos de merge (_fast-forward_ e _3way_). O primeiro
+  se encarrega de mesclar em um único branch, sem conservar a estrutura de árvore,
+  e é a definida por padrão. Já a conserva a estrutura de árvore (por isso
+  _three way_). Para forcar o método 3way podemos rodar: `git merge --no-ff`.
 
 ## [**Sincronização com o Servidor Remoto:**](#sincronização-com-o-servidor-remoto)
 
@@ -267,7 +273,8 @@ são eles:
   ~$ git clone https://github.com/user/repo.git
   ```
 
-  Assim, é criada a pasta 'repo' no diretório atual.
+  Assim, é criada a pasta 'repo' no diretório atual e podemos entrar nela para
+  utilizar os comandos do git.
 
 - **_`push`_**:
 
@@ -313,6 +320,12 @@ são eles:
   ```sh
   ~/repo$ git fetch
   ```
+
+Quando temos um _fork_ (uma ramificação) de um repositório e queremos mergear a
+branch main desse no original precisamos criar um _pull request_. O pull request
+é um pedido para mesclagem das branches que deve ser aprovado pelo responsável
+do repositório original. A criação desses pull requests pode ser feita diretamente
+do serviço de git remoto, nesse caso, o Github.
 
 ## [**Comandos Mais Avançados:**](#comandos-mais-avançados)
 
