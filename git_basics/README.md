@@ -329,7 +329,92 @@ do serviço de git remoto, nesse caso, o Github.
 
 ## [**Comandos Mais Avançados:**](#comandos-mais-avançados)
 
-- ...
+- **_`add --patch`_**
+
+  É importante sempre manter nossos commits o mais limpos possível, seja nas suas
+  mensagens e até mesmo no agrupamento das modificações. Certas vezes modificamos
+  arquivos mas seus commits devem ser diferentes. O parâmetro `patch` nos ajuda
+  a adicionar somente determinadas partes desse arquivo.
+
+  Imagine que modificamos um arquivo 'index.html', adicionando um header e um
+  footer, cada um com seu conteúdo. Porém, como queremos manter nosso histórico
+  de commits limpo **devemos** separar em dois commits. Podemos fazê-lo assim:
+
+  ```sh
+  # escolhemos o 'patch'(ou remendo) desejado, o header, digamos e commitamos
+  ~/repo$ git add --patch index.html
+  ~/repo$ git commit -m 'feat: adicionado o header e seu conteúdo'
+  # novamente, escolhemos o patch desejado e commitamos
+  ~/repo$ git add --patch index.html
+  ~/repo$ git commit -m 'feat: adicionado o footer e seu conteúdo'
+  ```
+
+  Assim, nosso histórico permanece mais limpo e de fácil entendimento.
+
+- **_`commit --amend`_**
+
+  Como dito antes, **é importante manter nosso histórico de commits limpo!** E o
+  parâmetro `amend` nos ajuda nisso. Ele permite alterar o commit anterior, seja
+  adicionando modificações esquecidas ou mesmo mudar a mensagem de commit.
+
+  Suponha que esquecemos de commitar a modificação do arquivo 'index.py' e também
+  existem um erro na mensagem de commit.
+
+  A mensagem anterior está como: 'feat: adicionado conteudo ao arquivo'
+  e desejamos mudar para: 'feat: adicionado conteúdo do arquivo index.py'
+
+  Podemos modificar assim:
+
+  ```sh
+  ~/repo$ git add index.py
+  ~/repo$ git commit -m 'feat: adicionado conteúdo do arquivo index.py' --amend
+  ```
+
+- **_`reset`_**
+
+  As vezes é necessário retroceder alguns commits ou mesmo tirar um arquivo do
+  stage. Podemos fazer essas operações com o comando `git reset`.
+
+  Queremos tirar o arquivo 'pasta/arquivo.txt' do estado staged que foi adicionado
+  por engano. Para isso rodamos:
+
+  ```sh
+  ~/repo$ git reset HEAD -- pasta/arquivo.txt
+  ```
+
+  **Obs1:** esse comando recebe por padrão o commit para onde queremos resetar, e
+  o 'HEAD' (cabeça) representa o ultimo commit. E em seguida recebe o arquivo
+  desejado.
+
+  Podemos ainda voltar 3 commits atrás, por quais razões. Para isso rodamos:
+
+  ```sh
+  ~/repo$ git reset HEAD~3
+  ```
+
+  **Obs2:** existem ainda dois parâmetros úteis, são eles: `--soft` e `--hard`.
+  O soft, é o padrão, reseta para o commit indicado mas conservando as modificações
+  criadas no caminho. Já o hard remove todas as alterações feitas.
+
+- **_`rebase`_**
+
+  Para a manipulação mais refinada dos commits anteriores podemos utilizar o
+  comando `git rebase`. Com ele podemos editar os commits mais anteriores ainda,
+  seria como um `commit --amend` mais refinado.
+
+  Existem diversas opções ao utilizar esse comando, alguns exemplos são:
+
+  - **edit**: edição simples do commit
+  - **reword**: mudança da mensagem de commit
+  - **squash**: une diversos commits em um só
+
+  Como existem muitos comandos para o rebase podemos roda-lo assim:
+
+  ```sh
+  ~/repo$ git rebase -i # '-i' ou '--interactive', de interativo
+  ```
+
+  Teremos a manipulação interativa do rebase.
 
 ## [**Github Flow & Git Flow**](#github-flow--git-flow)
 
