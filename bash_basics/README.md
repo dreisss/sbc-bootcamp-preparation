@@ -2,7 +2,7 @@
 
 Conceitos básicos para utilização do bash.
 
-## [**Navegação:**](#navegação)
+## [**Comandos de Navegação:**](#comandos-de-navegação)
 
 - **_`cd`_**: '**c**hange **d**irectory' / Mudar diretório
 
@@ -55,13 +55,13 @@ Conceitos básicos para utilização do bash.
 
     **Obs1:** algumas informações úteis sobre os arquivos/diretórios mostradas
     nessa visualização: permissões, usuário criador, tamanho (em bytes) e ultima
-    atualização.
+    modificação do arquivo.
 
     **Obs2:** Em um terminal _bashLike_ você pode combinar parâmetros em um único
     comando, sendo possível rodar, por exemplo, `ls -la` para listar todos os
     arquivos com informações adicionais.
 
-## [**Arquivos e Diretórios:**](#arquivos-e-diretórios)
+## [**Comandos para Arquivos e Diretórios:**](#comandos-para-arquivos-e-diretórios)
 
 - **_`mkdir`_**: '**m**a**k**e **dir**ectory' / Criar diretório
 
@@ -106,11 +106,11 @@ Conceitos básicos para utilização do bash.
     ```
 
     **Obs1:** O '-r' vem de _recursively_ (recursivamente), ou seja, ele remove
-    o diretórios e seus respectivos subdiretórios e arquivos.
+    o diretórios e seus respectivos subdiretórios e arquivos, recursivamente.
 
     **Obs2:** Caso precise forçar a remoção do arquivo/diretório podemos usar o
-    parâmetro '-f' (do inglês _force_). Podendo combinar com o comando anterior:
-    `rm -rf exemplo.txt`
+    parâmetro '-f' (do inglês _force_). Podendo também combinar com o comando
+    anterior, ficando: `rm -rf exemplo.txt`
 
 - **_`nano`_**, **_`vim`_**:
 
@@ -160,38 +160,41 @@ Alguns dos gerenciadores de pacotes mais conhecidos são:
 - **Aptitude:** ou _apt_, é o gerenciador padrão de distribuições linux derivadas
   do _Debian Linux_ (Ubuntu, Linux mint, etc.)
 
-- **Homebrew:** ou _brew_, é o gerenciados do sistema macOS
+- **Homebrew:** ou _brew_, é o gerenciador do sistema macOS
 
 Além dos gerenciadores de pacote de cada sistema existem também os gerenciadores
-específicos para cada linguagem de programação e _stack_, algumas delas são:
+específicos para cada linguagem de programação e _stack_ de programação (pesquise
+o que é uma stack de programação), alguns deles são:
 
 - **Node Package Manager:** ou _npm_, gerenciador das stacks que utilizam _Nodejs_
 
 - **Yarn:** também gerenciador para stacks Nodejs, sendo concorrente direto no npm
 
-- **Package Installer for Python:** ou _pip_, é gerenciador padrão do python
+- **Package Installer for Python:** ou _pip_, é gerenciador padrão do _Python_
 
 - **Cargo:** gerenciador padrão da linguagem _Rust_
 
-## [**Instalando Aplicativos/Softwares**](#arquivos-e-diretórios)
+## [**Instalando Aplicativos / Softwares**](#instalando-aplicativos--softwares)
 
 Uma das distribuições linux mais utilizadas é o Ubuntu, cujo gerenciador de
-pacotes é o **apt**, que segue as seguintes regras para a instalação:
+pacotes é o **apt**, que segue as seguintes regras para a instalação de pacotes:
 
-Caso o pacote seja comum(_fortune_, por exemplo) basta rodar o comando:
+Caso o pacote seja comum (o comando _fortune_, por exemplo) basta rodar:
 
 ```sh
 ~$ apt install fortune
 ```
 
-Já em caso da necessidade de acesso à arquivos críticos para o sistema
-(build-essential, por exemplo), é necessário a instalação como administrador:
+Já em caso da necessidade de acesso à arquivos críticos para o sistema (o pacote
+_build-essential_, por exemplo), é necessário a instalação como administrador:
 
 ```sh
-~$ sudo apt install build-essential
+~$ sudo apt install build-essential # o comando sudo 'invoca' o administrador
 ```
 
 Após isso digite a senha e a instalação será iniciada.
+
+**Obs1:**
 
 Um parâmetro que pode ser útil é o `-y`. Sempre que adicionamos esse parâmetro
 em um comando ele automaticamente considera _Yes_ como a resposta para as perguntas
@@ -201,6 +204,11 @@ podemos rodar:
 ```sh
 ~$ sudo apt install build-essential -y
 ```
+
+**Obs2:** é importante verificar se dado gerenciador de pacotes possui o pacote
+desejado (o pacote _asdf_, por exemplo) em seu servidor oficial. Nem todo pacote
+está em um gerenciador, as vezes precisamos adicionar um servidor alternativo ao
+servidor original do gerenciador.
 
 ## [**Rodando comandos / Entrada e saída padrão / Pipe**](#rodando-comandos--entrada-e-saída-padrão--pipe)
 
@@ -216,10 +224,10 @@ maneiras:
   ```sh
   ~$ ls # mostra o conteúdo da pasta atual
   ~$ dir # mostra o conteúdo da pasta atual
-  ~$ fortune # mostra uma frase aleatória
+  ~$ fortune # mostra uma frase aleatória de um banco de dados
   ```
 
-  **Obs:** Os parâmetros de cada comando não estão sendo considerados como dados
+  **Obs:** os parâmetros de cada comando não estão sendo considerados como dados
   nesse caso.
 
 - **receber um dado somente**
@@ -231,9 +239,9 @@ maneiras:
   ~$ cat exemplo.txt
   ```
 
-  Nesse caso o 'exemplo.txt' é o dado da entrada padrão. Assim, o comando processa
-  essa informação e externa ela pelo _default output_ (saída padrão) que será
-  detalhada mais à frente.
+  Nesse caso o 'exemplo.txt' é o dado da entrada padrão. Assim, o comando pode
+  processar essa informação e externa ela pelo _default output_ (saída padrão),
+  que será detalhada mais à frente.
 
 - **receber mais que um dado**
 
