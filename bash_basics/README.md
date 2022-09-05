@@ -232,22 +232,21 @@ maneiras:
 
 - **receber um dado somente**
 
-  Outros comandos tem um _default input_ (entrada padrão), como é chamada a
-  entrada de dados simples pelo terminal. Ela pode ser feita da seguinte maneira:
+  Outros comandos tem uma entrada básica de dados pelo terminal. Essa inserção
+  de dados é feita da seguinte maneira:
 
   ```sh
   ~$ cat exemplo.txt
   ```
 
-  Nesse caso o 'exemplo.txt' é o dado da entrada padrão. Assim, o comando pode
-  processar essa informação e externa ela pelo _default output_ (saída padrão),
-  que será detalhada mais à frente.
+  Nesse caso o 'exemplo.txt' é o dado da _entrada de argumentos_. Assim, o comando
+  pode processar essa informação e externar seu resultado.
 
 - **receber mais que um dado**
 
   Comandos como `cat`, `ls` e outros, podem receber diversos argumentos (argumentos
-  = dados) pela entrada padrão, executando a mesma funcionalidade para todos esses
-  argumentos:
+  = dados) pela mesma _entrada de argumentos_, executando a mesma funcionalidade
+  para todos esses argumentos:
 
   ```sh
   ~$ ls . pasta_de_exemplo # mostra o conteúdo de ambas as pastas
@@ -255,16 +254,20 @@ maneiras:
   ```
 
   Existe outra categoria de comandos que recebem múltiplos argumentos. Aqueles
-  que separam os argumentos entre o padrão e os outros. O comando `cowsay`, por
-  exemplo, recebe um texto pela entrada padrão mas pode receber o argumento
-  _Tongue_, veja o exemplo:
+  que separam os argumentos. O comando `cowsay`, por exemplo, recebe um texto
+  pela entrada padrão mas pode receber o argumento _Tongue_, veja o exemplo:
 
   ```sh
   ~$ cowsay -T U Texto de exemplo
   ```
 
-  Nesse exemplo o 'Texto de exemplo' é o dado da entrada padrão, e o 'U' é o dado
+  Nesse exemplo o 'Texto de exemplo' é o dado da entrada simples, e o 'U' é o dado
   para o -T que indica o argumento _Tongue_.
+
+- **entrada padrão / _stdin_ (_standard input_)**
+
+  É a entrada que recebe dados utilizando o _pipe_. Normalmente usado pela saída
+  de outro comando. Veja mais detalhes à frente.
 
 Existem ainda outras modalidades de entrada de dados, mas essas são as mais utilizadas.
 
@@ -277,7 +280,7 @@ para um comando, são eles:
   Comandos como `ls`, `fortune`, `cowsay` apenas mostram na tela seu resultado
   para a visualização do usuário.
 
-- **saída padrão**
+- **saída padrão / _stdout_ (_standard output_)**
 
   Quando queremos fazer operações com a saída de outro comando utilizamos a saída
   padrão desse comando. Ela passa adiante seu resultado para que o outro comando
